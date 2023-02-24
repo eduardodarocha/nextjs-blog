@@ -46,9 +46,9 @@ export default function Home({ allPostsData }) {
           ))}
         </ul>
       </section>
-      <h1 className="title">
+      {/* <h1 className="title">
         Read <Link href="/posts/first-post">this post!</Link>
-      </h1>
+      </h1> */}
 
     </Layout>
   );
