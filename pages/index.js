@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Script from "next/script";
 import Link from "next/link"
 import Date from '../components/date';
 import Layout, { siteTitle } from "../components/layout";
@@ -18,14 +19,19 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }) {
   return (
     <>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-PH31J3DLE1"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments)}
-        gtag('js', new Date());
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-PH31J3DLE1"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-        gtag('config', 'G-PH31J3DLE1');
-      </script>
+          gtag('config', 'G-PH31J3DLE1');
+        `}
+      </Script>
 
       <Layout home>
         <Head>
