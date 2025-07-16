@@ -17,49 +17,39 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
   return (
-    <>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-PH31J3DLE1"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-PH31J3DLE1');
-      </script>
-      <Layout home>
-        <Head>
-          <title>{siteTitle}</title>
-        </Head>
-        <section className={utilStyles.headingMd}>
-          <p>
-            Hello, I'm Eduardo a Software Developer. You can contact me on{" "}
-            <a href="https://www.linkedin.com/in/eduardo-rocha-dev/">Linkedin</a>{" "}
-          </p>
-          <p>
-            (This is a sample website - you’ll be building a site like this on{" "}
-            <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-          </p>
-        </section>
-        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-          <h2 className={utilStyles.headingLg}>Blog</h2>
-          <ul className={utilStyles.list}>
-            {allPostsData.map(({ id, date, title }) => (
-              <li className={utilStyles.listItem} key={id}>
-                <Link href={`/posts/${id}`}>{title}</Link>
-                <br />
-                <small className={utilStyles.lightText}>
-                  <Date dateString={date} />
-                </small>
-              </li>
-            ))}
-          </ul>
-        </section>
-        {/* <h1 className="title">
+    <Layout home>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
+      <section className={utilStyles.headingMd}>
+        <p>
+          Hello, I'm Eduardo a Software Developer. You can contact me on{" "}
+          <a href="https://www.linkedin.com/in/eduardo-rocha-dev/">Linkedin</a>{" "}
+        </p>
+        <p>
+          (This is a sample website - you’ll be building a site like this on{" "}
+          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+        </p>
+      </section>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <ul className={utilStyles.list}>
+          {allPostsData.map(({ id, date, title }) => (
+            <li className={utilStyles.listItem} key={id}>
+              <Link href={`/posts/${id}`}>{title}</Link>
+              <br />
+              <small className={utilStyles.lightText}>
+                <Date dateString={date} />
+              </small>
+            </li>
+          ))}
+        </ul>
+      </section>
+      {/* <h1 className="title">
         Read <Link href="/posts/first-post">this post!</Link>
       </h1> */}
 
-      </Layout>
-    </>
+    </Layout>
   );
 }
 
