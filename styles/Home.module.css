@@ -44,7 +44,7 @@
   padding: 0.65rem 1.4rem;
   border-radius: 999px;
   background: var(--gradient-accent);
-  color: #0a0a0f;
+  color: var(--color-bg);
   font-weight: 600;
   text-decoration: none;
   font-size: 0.95rem;
@@ -59,6 +59,7 @@
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 2rem 1.5rem;
+  scroll-margin-top: 5rem;
 }
 
 .sectionTitle {

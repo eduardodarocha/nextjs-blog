@@ -10,7 +10,7 @@
 }
 
 .article :global(a) {
-  color: #8b5cf6;
+  color: var(--color-accent);
 }
 
 .article :global(h2),
