@@ -5,6 +5,17 @@ import Layout, { siteTitle } from "../components/layout";
 import styles from "../styles/Home.module.css";
 import { getSortedPostsData } from '../lib/posts';
 
+const techStack = [
+  "JavaScript",
+  "React",
+  "Next.js",
+  "Node.js",
+  "CSS",
+  "Python",
+  "LLM APIs",
+  "Prompt Engineering",
+];
+
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   return {
@@ -60,6 +71,17 @@ export default function Home({ allPostsData }) {
           >
             Connect on LinkedIn
           </a>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Tech Stack</h2>
+          <div className={styles.chipGrid}>
+            {techStack.map((tech) => (
+              <span className={styles.chip} key={tech}>
+                {tech}
+              </span>
+            ))}
+          </div>
         </section>
       </Layout>
     </>
