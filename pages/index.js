@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Script from "next/script";
 import Image from "next/image";
+import Link from "next/link";
+import Date from '../components/date';
 import Layout, { siteTitle } from "../components/layout";
 import styles from "../styles/Home.module.css";
 import { getSortedPostsData } from '../lib/posts';
@@ -80,6 +82,20 @@ export default function Home({ allPostsData }) {
               <span className={styles.chip} key={tech}>
                 {tech}
               </span>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.section} id="writing">
+          <h2 className={styles.sectionTitle}>Writing</h2>
+          <div className={styles.postGrid}>
+            {allPostsData.map(({ id, date, title }) => (
+              <Link href={`/posts/${id}`} className={styles.postCard} key={id}>
+                <p className={styles.postTitle}>{title}</p>
+                <p className={styles.postDate}>
+                  <Date dateString={date} />
+                </p>
+              </Link>
             ))}
           </div>
         </section>
