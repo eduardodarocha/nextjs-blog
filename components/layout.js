@@ -1,11 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "./layout.module.css";
-import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
+import styles from "./layout.module.css";
 
 const name = "Eduardo Rocha";
-export const siteTitle = "Next.js Sample Website";
+export const siteTitle = "Eduardo Rocha — AI-Focused Software Developer";
 
 export default function Layout({ children, home }) {
   return (
@@ -14,54 +12,43 @@ export default function Layout({ children, home }) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="Learn how to build a personal website using Next.js"
+          content="Eduardo Rocha — AI-focused software developer. Writing about web development, AI, and software engineering."
         />
         <meta
           property="og:image"
           content={`https://og-image.vercel.app/${encodeURI(
             siteTitle
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
+          )}.png?theme=dark&md=1&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
-        {home ? (
-          <>
-            <Image
-              priority
-              src="/images/profile.png"
-              className={utilStyles.borderCircle}
-              height={144}
-              width={144}
-              alt=""
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : (
-          <>
-            <Link href="/">
-              <Image
-                priority
-                src="/images/profile.png"
-                className={utilStyles.borderCircle}
-                height={108}
-                width={108}
-                alt="Minha imagem"
-              />
+      <nav className={styles.nav}>
+        <div className={styles.navInner}>
+          <Link href="/" className={styles.logo}>
+            {name}
+          </Link>
+          <div className={styles.navLinks}>
+            <Link href="/#writing" className={styles.navLink}>
+              Blog
             </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/" className={utilStyles.colorInherit}>
-                {name}
-              </Link>
-            </h2>
-          </>
-        )}
-      </header>
-      <main>{children}</main>
+            <a
+              href="https://www.linkedin.com/in/eduardo-rocha-dev/"
+              className={styles.navLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </nav>
+      <main className={styles.main}>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
-          <Link href="/">← Back to home</Link>
+          <Link href="/" className={styles.pillLink}>
+            ← Back to home
+          </Link>
         </div>
       )}
     </div>

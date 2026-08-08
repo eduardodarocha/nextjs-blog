@@ -1,15 +1,78 @@
 .container {
-  max-width: 36rem;
-  padding: 0 1rem;
-  margin: 3rem auto 6rem;
-}
-
-.header {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+  background: rgba(10, 10, 15, 0.72);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navInner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-decoration: none;
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navLink {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.15s ease;
+}
+
+.navLink:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
 }
 
 .backToHome {
-  margin: 3rem 0 0;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.pillLink {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.pillLink:hover {
+  border-color: var(--color-border-hover);
+  text-decoration: none;
 }
