@@ -530,7 +530,7 @@ git commit -m "Add tech-stack section to homepage"
 
 **Interfaces:**
 - Consumes: `styles.section`/`styles.sectionTitle` from Task 3; `allPostsData` prop (array of `{ id, date, title }`) already produced by `getStaticProps` in this file, unchanged.
-- Produces: `styles.postGrid`, `styles.postCard`, `styles.postTitle`, `styles.postDate` in `Home.module.css`. Updates `utils.module.css`'s `.lightText` color/font — Task 6 (`pages/posts/[id].js`) also uses `.lightText` for the post date, so it inherits this styling automatically.
+- Produces: `styles.postGrid`, `styles.postCard`, `styles.postTitle`, `styles.postDate` in `Home.module.css`. Trims `utils.module.css` down to exactly two classes — `.headingXl` and `.lightText` — which are the only two Task 6 (`pages/posts/[id].js`) consumes. Task 6 must not reference any other class from this file.
 
 - [ ] **Step 1: Append to `styles/Home.module.css`**
 
@@ -574,18 +574,13 @@ git commit -m "Add tech-stack section to homepage"
 
 - [ ] **Step 2: Update `styles/utils.module.css`**
 
-Replace its contents with:
+After the redesign, only `.headingXl` and `.lightText` are still referenced
+(both by `pages/posts/[id].js` in Task 6). Every other class in this file
+becomes dead code — the old profile-photo header, the plain `<ul>` blog list,
+and the tutorial boilerplate that used them are all gone. Replace the file's
+entire contents with just the two surviving classes:
 
 ```css
-.heading2Xl {
-  font-size: 2.5rem;
-  line-height: 1.2;
-  font-weight: 800;
-  letter-spacing: -0.05rem;
-  margin: 1rem 0;
-  color: var(--color-text);
-}
-
 .headingXl {
   font-size: 2rem;
   line-height: 1.3;
@@ -595,47 +590,16 @@ Replace its contents with:
   color: var(--color-text);
 }
 
-.headingLg {
-  font-size: 1.5rem;
-  line-height: 1.4;
-  color: var(--color-text);
-  margin: 1rem 0;
-}
-
-.headingMd {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  color: var(--color-text);
-}
-
-.borderCircle {
-  border-radius: 9999px;
-}
-
-.colorInherit {
-  color: inherit;
-}
-
-.padding1px {
-  padding-top: 1px;
-}
-
-.list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.listItem {
-  margin: 0 0 1.25rem;
-}
-
 .lightText {
   color: var(--color-text-muted);
   font-family: var(--font-mono);
   font-size: 0.85rem;
 }
 ```
+
+Do not keep `.heading2Xl`, `.headingLg`, `.headingMd`, `.borderCircle`,
+`.colorInherit`, `.padding1px`, `.list`, or `.listItem` — they have no
+remaining consumers.
 
 - [ ] **Step 3: Add imports and the blog section to `pages/index.js`**
 
