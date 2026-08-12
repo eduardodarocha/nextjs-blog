@@ -146,10 +146,7 @@ export default function Home({ allPostsData }) {
                 <div>
                   {/* Micro-Data Layer Header */}
                   <div className={styles.cardHeader}>
-                    <span>
-                      {post.indexLabel ||
-                        `// index_${String(idx + 1).padStart(2, "0")}`}
-                    </span>
+                    <span>{post.indexLabel}</span>
                     <span className={styles.cardCategory}>
                       [ {post.category || "ai_engineering"} ]
                     </span>
