@@ -1,4 +1,4 @@
-import { Montserrat, JetBrains_Mono } from "@next/font/google";
+import { Montserrat, JetBrains_Mono } from "next/font/google";
 import "../styles/global.css";
 
 const montserrat = Montserrat({ subsets: ["latin"], display: "swap" });
