@@ -4,7 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test:cron": "node scripts/test-cron.js"
+    "test:cron": "node scripts/test-cron.js",
+    "test:direct": "node scripts/test-direct.js"
   },
   "dependencies": {
     "@google/genai": "^2.16.0",
