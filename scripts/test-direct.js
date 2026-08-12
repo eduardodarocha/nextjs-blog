@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const { Octokit } = require('@octokit/rest');
 const { GoogleGenAI } = require('@google/genai');
+const matter = require('gray-matter');
 
 async function testDirectGeneration() {
   console.log('🧪 Iniciando teste de geração direta de post por IA em Português...\n');
@@ -22,8 +23,10 @@ async function testDirectGeneration() {
     process.exit(1);
   }
 
-  const owner = process.env.GITHUB_OWNER || 'eduardodarocha';
-  const repo = process.env.GITHUB_REPO || 'nextjs-blog';
+  const rawOwner = process.env.GITHUB_OWNER;
+  const rawRepo = process.env.GITHUB_REPO;
+  const owner = (!rawOwner || rawOwner === 'your_github_username') ? 'eduardodarocha' : rawOwner;
+  const repo = (!rawRepo || rawRepo === 'your_repository_name') ? 'nextjs-blog' : rawRepo;
   const defaultBranch = process.env.GITHUB_BRANCH || 'main';
 
   const octokit = new Octokit({ auth: githubToken });
@@ -59,41 +62,59 @@ REGRAS:
 3. Não repita estes tópicos existentes no blog: ${existingFiles.join(', ')}.
 4. O conteúdo deve ser rico em detalhes, com títulos (##, ###), exemplos práticos, blocos de código se aplicável, e uma conclusão instigante.
 
-FORMATO DE RESPOSTA (Retorne EXATAMENTE um JSON válido sem marcações markdown extra em volta):
-{
-  "title": "Título atraente do artigo em Português",
-  "slug": "slug-do-artigo-em-kebab-case",
-  "content": "Conteúdo completo em Markdown..."
-}`;
+FORMATO DE SAÍDA:
+Gere o artigo exatamente com o Frontmatter YAML no topo e o conteúdo Markdown logo abaixo:
+
+---
+title: "Título atraente do artigo em Português"
+slug: "slug-do-artigo-em-kebab-case"
+---
+
+# Título do Artigo
+
+Conteúdo completo em Markdown...`;
 
     const aiResponse = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: prompt,
-      config: {
-        responseMimeType: 'application/json',
-      },
     });
 
-    let rawText = aiResponse.text || '';
-    rawText = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
+    let rawText = (aiResponse.text || '').trim();
+    if (rawText.startsWith('```markdown')) {
+      rawText = rawText.replace(/^```markdown\s*/i, '').replace(/```\s*$/, '').trim();
+    } else if (rawText.startsWith('```')) {
+      rawText = rawText.replace(/^```\s*/, '').replace(/```\s*$/, '').trim();
+    }
 
-    const articleData = JSON.parse(rawText);
-    const { title, slug, content } = articleData;
+    const parsedData = matter(rawText);
+    const title = parsedData.data.title;
+    let slug = parsedData.data.slug;
+
+    if (!title) {
+      console.error('❌ ERRO: Não foi possível extrair o título do artigo gerado pela IA.');
+      console.log('Resposta bruta:', rawText);
+      process.exit(1);
+    }
+
+    if (!slug) {
+      slug = title.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-');
+    }
+
+    const cleanSlug = slug.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-');
+    const todayDate = new Date().toISOString().split('T')[0];
+    const filePath = `posts/${cleanSlug}.md`;
+    const bodyContent = parsedData.content.trim();
 
     console.log(`   ✅ Artigo gerado pela IA com sucesso!`);
     console.log(`   📌 Título: "${title}"`);
-    console.log(`   🔗 Slug: "${slug}"`);
-
-    const todayDate = new Date().toISOString().split('T')[0];
-    const cleanSlug = slug.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-');
-    const filePath = `posts/${cleanSlug}.md`;
+    console.log(`   🔗 Slug: "${cleanSlug}"`);
 
     const fullMarkdownContent = `---
 title: '${title.replace(/'/g, "''")}'
 date: '${todayDate}'
 ---
 
-${content}
+${bodyContent}
 `;
 
     // 3. Create Git Branch and Commit on GitHub
@@ -141,7 +162,7 @@ ${content}
 ---
 
 #### Resumo / Prévia:
-${content.substring(0, 300)}...
+${bodyContent.substring(0, 300)}...
 
 ---
 *Revise o conteúdo e clique em **Merge pull request** para publicar no Vercel.*`,
