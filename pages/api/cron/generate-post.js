@@ -67,10 +67,13 @@ FORMATO DE RESPOSTA (Retorne EXATAMENTE um JSON válido sem marcações markdown
   "content": "Conteúdo completo em Markdown..."
 }`;
 
-    // Call Gemini API
+    // Call Gemini API with JSON mode
     const aiResponse = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: prompt,
+      config: {
+        responseMimeType: 'application/json',
+      },
     });
 
     let rawText = aiResponse.text || '';

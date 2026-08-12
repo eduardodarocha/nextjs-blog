@@ -69,6 +69,9 @@ FORMATO DE RESPOSTA (Retorne EXATAMENTE um JSON válido sem marcações markdown
     const aiResponse = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: prompt,
+      config: {
+        responseMimeType: 'application/json',
+      },
     });
 
     let rawText = aiResponse.text || '';
