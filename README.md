@@ -38,7 +38,7 @@ Diariamente, o sistema utiliza o **Google Gemini API** e **Vercel Cron** para cr
 
 ```mermaid
 flowchart TD
-    A[🕒 Vercel Cron - 09:00 BRT / 12:00 UTC] -->|Trigger HTTP| B[⚡ Next.js API Route: /api/cron/generate-post]
+    A[🕒 Vercel Cron - Seg/Qua/Sex às 08:00 BRT / 11:00 UTC] -->|Trigger HTTP| B[⚡ Next.js API Route: /api/cron/generate-post]
     B -->|Verifica CRON_SECRET| C{Autenticado?}
     C -- Não --> D[❌ 401 Unauthorized]
     C -- Sim --> E[🐙 GitHub API: Busca títulos existentes em posts/]

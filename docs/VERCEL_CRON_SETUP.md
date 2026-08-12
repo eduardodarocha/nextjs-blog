@@ -30,12 +30,12 @@ O agendamento configurado no [`vercel.json`](../vercel.json) é:
   "crons": [
     {
       "path": "/api/cron/generate-post",
-      "schedule": "0 12 * * *"
+      "schedule": "0 11 * * 1,3,5"
     }
   ]
 }
 ```
-Isso aciona a geração diariamente às **12:00 UTC** (**09:00 no horário de Brasília - BRT**).
+Isso aciona a geração toda **Segunda, Quarta e Sexta-feira às 11:00 UTC (08:00 da manhã no horário de Brasília - BRT)**.
 
 ---
 
