@@ -30,8 +30,8 @@ Três agentes colaboram via **Google Gemini API** e **Vercel Cron**: um **agente
   - **Idioma**: Artigos gerados estritamente em **Português do Brasil**.
   - **Evita Tópicos Duplicados**: O sistema consulta os artigos existentes no repositório antes de gerar novos temas.
 - 🔀 **Fluxo de Trabalho via Pull Request no GitHub**:
-  - A rota `/api/cron/generate-post` cria um novo branch `draft/ia-post-<slug>`.
-  - Abre automaticamente um **Pull Request no GitHub** com resumo do artigo.
+  - Cada agente cria seu próprio branch (`draft/trend-post-<slug>` ou `draft/ia-post-<slug>`) e commita o novo arquivo em `posts/`.
+  - Abre automaticamente um **Pull Request no GitHub** com resumo do artigo e o selo de revisão do Agente Editor.
   - Ao aprovar e fazer o merge do PR, o Vercel realiza o **deploy automático** do novo post!
 
 ---
@@ -100,7 +100,7 @@ nextjs-blog/
 ## 🛠️ Tecnologias Utilizadas
 
 - **Framework Web**: [Next.js 14](https://nextjs.org/) (React 18 LTS)
-- **IA Generativa**: [@google/genai](https://www.npmjs.com/package/@google/genai) (Google Gemini 2.5 Flash API)
+- **IA Generativa**: [@google/genai](https://www.npmjs.com/package/@google/genai) (Google Gemini 2.5 Flash API, com a ferramenta de Google Search grounding usada pelo Agente de Tendências)
 - **Integração GitHub**: [@octokit/rest](https://www.npmjs.com/package/@octokit/rest) (GitHub REST API)
 - **Parse de Markdown**: `gray-matter`, `remark`, `remark-html`
 - **Datas**: `date-fns`
