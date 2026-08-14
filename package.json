@@ -5,6 +5,7 @@
     "build": "next build",
     "start": "next start",
     "test:cron": "node scripts/test-cron.js",
+    "test:trend-cron": "node scripts/test-trend-cron.js",
     "test:direct": "node scripts/test-direct.js"
   },
   "dependencies": {

@@ -6,16 +6,16 @@ import { slugify, listExistingPostFiles, publishPostAsPR } from '../../../lib/gi
 import { editPost } from '../../../lib/editorAgent';
 
 export const config = {
-  // A full article, an editor pass, plus 4 GitHub round-trips takes ~41s+,
-  // so this must be set explicitly — the platform default is far lower and
-  // silently 504s the job. 300 requires Fluid Compute, which is enabled on
-  // this project; without it the Hobby ceiling is 60 and anything above that
-  // fails the deploy with `invalid_max_duration`.
+  // Search grounding adds latency on top of the ~41s the sibling generator
+  // already takes, so this needs the same explicit ceiling as
+  // generate-post.js — see that file for why 300 requires Fluid Compute.
   maxDuration: 300,
 };
 
-// Friday's generator: an evergreen, didactic deep-dive on an AI ecosystem
-// topic, written from the model's general knowledge (no search grounding).
+// Trend agent: Mon/Wed. Same PT-BR, didactic voice as the Friday generator,
+// but grounded in live Google Search results instead of the model's general
+// knowledge, so the topic is whatever is actually trending in the AI
+// industry/ecosystem right now.
 export default async function handler(req, res) {
   if (!authenticateCron(req, res)) return;
 
@@ -40,19 +40,19 @@ export default async function handler(req, res) {
   const ai = new GoogleGenAI({ apiKey: geminiApiKey });
 
   try {
-    // 1. Fetch existing posts from GitHub repository to avoid duplicate topics
     const existingFiles = await listExistingPostFiles({ octokit, owner, repo, ref: defaultBranch });
     const existingTitles = existingFiles.map((f) => f.replace(/\.md$/, ''));
 
-    // 2. Build prompt for Gemini API (YAML Frontmatter + Markdown Output)
-    const prompt = `Você é um especialista em Inteligência Artificial, Engenharia de Software e Tecnologias Emergentes.
-Sua tarefa é escrever um artigo completo, didático e altamente relevante em PORTUGUÊS DO BRASIL sobre o ecossistema de Inteligência Artificial.
+    const prompt = `Você é um jornalista especializado em Inteligência Artificial, cobrindo o ecossistema de IA (novos modelos, lançamentos, financiamentos, ferramentas e pesquisas) para um blog técnico em Português do Brasil.
+
+Use a busca do Google para descobrir o que está acontecendo de mais relevante e recente no ecossistema de IA agora, e escreva um artigo envolvente sobre isso.
 
 REGRAS:
 1. O artigo DEVE ser em Português do Brasil.
-2. O tema deve ser estritamente focado no ecossistema de IA (por exemplo: Agentes Autônomos de IA, Modelos de Linguagem (LLMs), RAG (Retrieval-Augmented Generation), Visão Computacional, Engenharia de Prompt, Modelos Open-Source, IA na programação, IA no cotidiano ou Ética em IA).
+2. O tema deve ser uma tendência ou notícia REAL e ATUAL do ecossistema de IA (lançamentos de modelos, movimentos de mercado, novas ferramentas, pesquisas relevantes) — não um tópico genérico atemporal.
 3. Não repita estes tópicos existentes no blog: ${existingFiles.join(', ')}.
-4. O conteúdo deve ser rico em detalhes, com títulos (##, ###), exemplos práticos, blocos de código se aplicável, e uma conclusão instigante.
+4. O conteúdo deve ser rico em detalhes, com títulos (##, ###), exemplos práticos, blocos de código se aplicável, e uma conclusão instigante — mesmo estilo didático e aprofundado do restante do blog.
+5. Baseie as afirmações nos resultados de busca; não invente números, datas ou citações.
 
 FORMATO DE SAÍDA:
 Gere o artigo exatamente com o Frontmatter YAML no topo e o conteúdo Markdown logo abaixo:
@@ -66,10 +66,12 @@ slug: "slug-do-artigo-em-kebab-case"
 
 Conteúdo completo em Markdown...`;
 
-    // Call Gemini API
     const aiResponse = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: prompt,
+      config: {
+        tools: [{ googleSearch: {} }],
+      },
     });
 
     let rawText = (aiResponse.text || '').trim();
@@ -84,7 +86,7 @@ Conteúdo completo em Markdown...`;
     let slug = parsedData.data.slug;
 
     if (!title) {
-      console.error('[cron] no title in AI output. Raw response:', rawText);
+      console.error('[cron:trend] no title in AI output. Raw response:', rawText);
       return res.status(500).json({
         error: 'Failed to extract article title from AI output.',
       });
@@ -94,15 +96,26 @@ Conteúdo completo em Markdown...`;
       slug = title;
     }
 
-    // The filename/branch slug is derived from the pre-edit title, so the
-    // editor pass below can polish wording without ever moving the file path.
     const cleanSlug = slugify(slug);
-    const draftBody = parsedData.content.trim();
+    let draftBody = parsedData.content.trim();
 
-    // 3. Editor agent reviews and corrects the draft before it's committed.
+    // Grounding reports back the sources it actually used — attaching them
+    // lends the piece credibility and gives the editor pass something
+    // concrete to check the article's claims against.
+    const groundingChunks = aiResponse.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
+    const sources = groundingChunks
+      .map((chunk) => chunk.web)
+      .filter((web) => web?.uri)
+      .slice(0, 5);
+
+    if (sources.length > 0) {
+      const sourceLines = sources.map((web) => `- [${web.title || web.uri}](${web.uri})`).join('\n');
+      draftBody = `${draftBody}\n\n## Fontes\n\n${sourceLines}`;
+    }
+
+    // Editor agent reviews and corrects the draft before it's committed.
     const edited = await editPost({ ai, title, content: draftBody, existingTitles });
 
-    // 4. Create Git branch, commit the post, and open the PR for human review.
     const { pr, fileName, branch } = await publishPostAsPR({
       octokit,
       owner,
@@ -112,30 +125,29 @@ Conteúdo completo em Markdown...`;
       cleanSlug,
       existingFiles,
       bodyContent: edited.content,
-      branchPrefix: 'draft/ia-post',
-      commitMessage: `feat(blog): adicionei novo post em português sobre IA - "${edited.title}"`,
-      prTitle: `🤖 Novo Post sobre IA: ${edited.title}`,
-      prBodyExtra: `### 🤖 Artigo Gerado Automaticamente por IA
+      branchPrefix: 'draft/trend-post',
+      commitMessage: `feat(blog): adicionei novo post de tendências sobre IA - "${edited.title}"`,
+      prTitle: `🔥 Novo Post de Tendências IA: ${edited.title}`,
+      prBodyExtra: `### 🔥 Artigo de Tendências Gerado Automaticamente por IA (com busca no Google)
 
 **Título:** ${edited.title}
 ${edited.edited ? '\n✏️ Revisado automaticamente pelo Agente Editor antes deste PR.' : ''}`,
     });
 
-    console.log('[cron] pull request created', pr.html_url);
+    console.log('[cron:trend] pull request created', pr.html_url);
 
     return res.status(200).json({
       success: true,
-      message: 'Post em Português sobre IA gerado com sucesso e Pull Request criado!',
+      message: 'Post de tendências sobre IA gerado com sucesso e Pull Request criado!',
       title: edited.title,
       slug: fileName.replace(/\.md$/, ''),
       branch,
       prUrl: pr.html_url,
     });
   } catch (error) {
-    // error.status is set by Octokit — a 401 here means the GitHub PAT expired.
-    console.error('[cron] failed:', error.status || '', error.message, error);
+    console.error('[cron:trend] failed:', error.status || '', error.message, error);
     return res.status(500).json({
-      error: error.message || 'Erro ao gerar post via Vercel Cron.',
+      error: error.message || 'Erro ao gerar post de tendências via Vercel Cron.',
       upstreamStatus: error.status,
     });
   }

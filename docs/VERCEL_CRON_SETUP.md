@@ -1,10 +1,16 @@
 # Configuração do Gerador Autônomo de Blog de IA no Vercel
 
-Este projeto agora está equipado com uma rota de API de Cron do Vercel (`/api/cron/generate-post`) que diariamente:
-1. Gera um novo artigo em **Português do Brasil** sobre **Inteligência Artificial (IA)** usando o Google Gemini API.
-2. Evita tópicos duplicados lendo os artigos já existentes na pasta `posts/`.
-3. Cria um novo branch e abre automaticamente um **Pull Request no GitHub**.
-4. Quando você aprova/funde o Pull Request, o Vercel faz o deploy automático do artigo publicado!
+Este projeto está equipado com duas rotas de API de Cron do Vercel, cada uma acionando um agente diferente:
+
+- **`/api/cron/generate-trend-post`** (Segunda e Quarta) — Agente de Tendências: busca no Google as notícias mais recentes do ecossistema de IA e escreve um artigo sobre elas.
+- **`/api/cron/generate-post`** (Sexta) — Agente Gerador: escreve um artigo aprofundado e didático sobre um tema atemporal do ecossistema de IA.
+
+Ambas as rotas seguem o mesmo fluxo:
+1. Geram um novo artigo em **Português do Brasil** sobre **Inteligência Artificial (IA)** usando o Google Gemini API.
+2. Evitam tópicos duplicados lendo os artigos já existentes na pasta `posts/`.
+3. Passam o rascunho pelo **Agente Editor**, que revisa e corrige gramática, estrutura e consistência factual.
+4. Criam um novo branch e abrem automaticamente um **Pull Request no GitHub**.
+5. Quando você aprova/funde o Pull Request, o Vercel faz o deploy automático do artigo publicado!
 
 ---
 
@@ -29,13 +35,17 @@ O agendamento configurado no [`vercel.json`](../vercel.json) é:
 {
   "crons": [
     {
+      "path": "/api/cron/generate-trend-post",
+      "schedule": "0 11 * * 1,3"
+    },
+    {
       "path": "/api/cron/generate-post",
-      "schedule": "0 11 * * 1,3,5"
+      "schedule": "0 11 * * 5"
     }
   ]
 }
 ```
-Isso aciona a geração toda **Segunda, Quarta e Sexta-feira às 11:00 UTC (08:00 da manhã no horário de Brasília - BRT)**.
+Isso aciona o Agente de Tendências toda **Segunda e Quarta**, e o Agente Gerador toda **Sexta-feira**, sempre às **11:00 UTC (08:00 da manhã no horário de Brasília - BRT)**. São dois Cron Jobs no total — o máximo permitido no plano **Hobby**.
 
 ---
 
@@ -51,8 +61,9 @@ Isso aciona a geração toda **Segunda, Quarta e Sexta-feira às 11:00 UTC (08:0
    ```bash
    npm run dev
    ```
-3. Em outro terminal, execute o teste local:
+3. Em outro terminal, execute o teste local do agente desejado:
    ```bash
-   npm run test:cron
+   npm run test:cron        # Agente Gerador
+   npm run test:trend-cron  # Agente de Tendências
    ```
 4. Verifique a notificação de Pull Request criado no seu GitHub!
