@@ -3,11 +3,12 @@ import { GoogleGenAI } from '@google/genai';
 import matter from 'gray-matter';
 
 export const config = {
-  // Generating a full article plus 4 GitHub round-trips does not fit in the
-  // 10s default. 60s is the ceiling for Hobby while Fluid Compute is off —
-  // anything higher fails the deploy with `invalid_max_duration`. Turning on
-  // Fluid Compute in the project settings raises this to 300.
-  maxDuration: 60,
+  // A full article plus 4 GitHub round-trips takes ~41s, so this must be set
+  // explicitly — the platform default is far lower and silently 504s the job.
+  // 300 requires Fluid Compute, which is enabled on this project; without it
+  // the Hobby ceiling is 60 and anything above that fails the deploy with
+  // `invalid_max_duration`.
+  maxDuration: 300,
 };
 
 // Accents must be folded before stripping non-ASCII, otherwise Portuguese
