@@ -157,11 +157,18 @@ Você pode simular a execução do Vercel Cron na sua máquina local:
 
 1. Suba as alterações para o seu repositório no **GitHub** (`git push origin main`).
 2. Importe o projeto no [Vercel Dashboard](https://vercel.com/).
-3. Vá em **`Settings > Environment Variables`** no Vercel e adicione:
+3. Vá em **`Settings > Environment Variables`** no Vercel e adicione (marcando o ambiente **Production**):
    - `GEMINI_API_KEY`
    - `GITHUB_TOKEN`
    - `CRON_SECRET`
-4. O Vercel detectará automaticamente o arquivo [`vercel.json`](./vercel.json) e agendará a execução diária do Cron para as **09:00 BRT (12:00 UTC)**.
+
+   > ⚠️ As variáveis de ambiente são vinculadas ao deploy no momento do build. Depois de
+   > adicionar ou alterar qualquer uma delas, **refaça o deploy de produção** — caso contrário
+   > a função continuará enxergando o valor antigo (ou `undefined`, o que resulta em `401`).
+4. O Vercel detectará automaticamente o arquivo [`vercel.json`](./vercel.json) e agendará a execução do Cron para **Segunda, Quarta e Sexta às 11:00 UTC (08:00 BRT)**.
+
+   > ℹ️ No plano **Hobby**, o Vercel dispara o Cron em qualquer momento dentro da hora
+   > agendada (11:00–11:59 UTC / 08:00–08:59 BRT) para distribuir a carga entre as contas.
 
 ---
 

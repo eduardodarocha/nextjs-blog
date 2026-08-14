@@ -2,16 +2,48 @@ import { Octokit } from '@octokit/rest';
 import { GoogleGenAI } from '@google/genai';
 import matter from 'gray-matter';
 
+export const config = {
+  // Generating a full article plus 4 GitHub round-trips does not fit in the
+  // 10s default that applies when Fluid Compute is off. 300s is the Hobby max.
+  maxDuration: 300,
+};
+
+// Accents must be folded before stripping non-ASCII, otherwise Portuguese
+// titles turn into slugs like "intelig-ncia-artificial".
+function slugify(value) {
+  return value
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9-]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
 export default async function handler(req, res) {
   // 1. Verify Vercel Cron authorization secret
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization || '';
   const cronSecret = process.env.CRON_SECRET;
-  
+
+  console.log('[cron] invoked', {
+    ua: req.headers['user-agent'],                   // 'vercel-cron/1.0' when Vercel calls
+    schedule: req.headers['x-vercel-cron-schedule'], // '0 11 * * 1,3,5'
+    hasSecret: Boolean(cronSecret),
+    hasAuthHeader: Boolean(authHeader),
+  });
+
+  // A missing secret and a wrong secret are different problems, so they get
+  // different status codes — otherwise the logs cannot tell them apart.
   if (process.env.NODE_ENV === 'production') {
-    if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
+    if (!cronSecret) {
+      console.error('[cron] CRON_SECRET is not set in this environment');
+      return res.status(500).json({ error: 'CRON_SECRET not configured.' });
+    }
+    if (authHeader.trim() !== `Bearer ${cronSecret.trim()}`) {
+      console.error('[cron] auth mismatch');
       return res.status(401).json({ error: 'Unauthorized cron request.' });
     }
-  } else if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
+  } else if (cronSecret && authHeader.trim() !== `Bearer ${cronSecret.trim()}`) {
     return res.status(401).json({ error: 'Unauthorized cron request.' });
   }
 
@@ -93,19 +125,24 @@ Conteúdo completo em Markdown...`;
     let slug = parsedData.data.slug;
 
     if (!title) {
+      console.error('[cron] no title in AI output. Raw response:', rawText);
       return res.status(500).json({
         error: 'Failed to extract article title from AI output.',
-        rawText,
       });
     }
 
     if (!slug) {
-      slug = title.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-');
+      slug = title;
     }
 
-    const cleanSlug = slug.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-');
+    const cleanSlug = slugify(slug);
     const todayDate = new Date().toISOString().split('T')[0];
-    const filePath = `posts/${cleanSlug}.md`;
+    // Reusing a slug would make createOrUpdateFileContents fail with a 422
+    // ("sha wasn't supplied"), so a repeated topic becomes a dated variant.
+    const fileName = existingFiles.includes(`${cleanSlug}.md`)
+      ? `${cleanSlug}-${todayDate}.md`
+      : `${cleanSlug}.md`;
+    const filePath = `posts/${fileName}`;
     const bodyContent = parsedData.content.trim();
 
     const fullMarkdownContent = `---
@@ -132,6 +169,23 @@ ${bodyContent}
       sha: mainSha,
     });
 
+    // Safety net for when the existing-posts listing above failed: GitHub
+    // rejects a write to an existing path unless the current blob sha is sent.
+    let existingSha;
+    try {
+      const { data: existingFile } = await octokit.repos.getContent({
+        owner,
+        repo,
+        path: filePath,
+        ref: newBranchName,
+      });
+      if (!Array.isArray(existingFile)) {
+        existingSha = existingFile.sha;
+      }
+    } catch (e) {
+      // 404 means the path is free, which is the expected case
+    }
+
     await octokit.repos.createOrUpdateFileContents({
       owner,
       repo,
@@ -139,6 +193,7 @@ ${bodyContent}
       message: `feat(blog): adicionei novo post em português sobre IA - "${title}"`,
       content: Buffer.from(fullMarkdownContent, 'utf-8').toString('base64'),
       branch: newBranchName,
+      ...(existingSha ? { sha: existingSha } : {}),
     });
 
     const { data: pr } = await octokit.pulls.create({
@@ -162,18 +217,22 @@ ${bodyContent.substring(0, 300)}...
 *Revise o conteúdo e clique em **Merge pull request** para publicar no Vercel.*`,
     });
 
+    console.log('[cron] pull request created', pr.html_url);
+
     return res.status(200).json({
       success: true,
       message: 'Post em Português sobre IA gerado com sucesso e Pull Request criado!',
       title,
-      slug: cleanSlug,
+      slug: fileName.replace(/\.md$/, ''),
       branch: newBranchName,
       prUrl: pr.html_url,
     });
   } catch (error) {
-    console.error('Error generating daily post:', error);
+    // error.status is set by Octokit — a 401 here means the GitHub PAT expired.
+    console.error('[cron] failed:', error.status || '', error.message, error);
     return res.status(500).json({
       error: error.message || 'Erro ao gerar post via Vercel Cron.',
+      upstreamStatus: error.status,
     });
   }
 }
