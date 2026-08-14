@@ -4,8 +4,10 @@ import matter from 'gray-matter';
 
 export const config = {
   // Generating a full article plus 4 GitHub round-trips does not fit in the
-  // 10s default that applies when Fluid Compute is off. 300s is the Hobby max.
-  maxDuration: 300,
+  // 10s default. 60s is the ceiling for Hobby while Fluid Compute is off —
+  // anything higher fails the deploy with `invalid_max_duration`. Turning on
+  // Fluid Compute in the project settings raises this to 300.
+  maxDuration: 60,
 };
 
 // Accents must be folded before stripping non-ASCII, otherwise Portuguese
