@@ -120,9 +120,9 @@ GEMINI_API_KEY=sua_chave_gemini_aqui
 GITHUB_TOKEN=seu_github_token_aqui
 
 # Detalhes do Repositório GitHub
-GITHUB_OWNER=eduardodarocha
-GITHUB_REPO=nextjs-blog
-GITHUB_BRANCH=main
+GITHUB_OWNER=<github name>
+GITHUB_REPO=<github repository>
+GITHUB_BRANCH=<branch name>
 
 # Token de Segurança do Vercel Cron
 CRON_SECRET=seu_segredo_cron_aqui
