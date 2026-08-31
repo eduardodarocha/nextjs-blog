@@ -81,9 +81,10 @@ nextjs-blog/
 │   └── posts/
 │       └── [id].js      # Rota dinâmica para exibição de artigos individuais
 ├── posts/               # Arquivos Markdown contendo as postagens do blog
-│   ├── ssg-ssr.md
-│   ├── pre-rendering.md
-│   └── df-overview.md
+│   ├── ia-ciberseguranca-ataque-defesa-automatizados.md
+│   ├── ia-saude-diagnostico-clinico-inteligente.md
+│   ├── governanca-regulacao-ia-ai-act-marco-legal-brasileiro.md
+│   └── ...                # demais artigos gerados pelos agentes
 ├── public/              # Arquivos estáticos (imagens, favicons)
 ├── scripts/
 │   ├── test-cron.js       # Testa o Agente Gerador (generate-post) localmente
