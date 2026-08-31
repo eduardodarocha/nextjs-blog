@@ -16,10 +16,6 @@ export default function Custom404() {
 
       <article className={styles.articleContainer}>
         <div className={styles.headerCard} style={{ textAlign: "center", padding: "3rem 1.75rem" }}>
-          <div className={styles.metaTop} style={{ justifyContent: "center", gap: "12px" }}>
-            <span style={{ color: "#38BDF8" }}>[ 404 ]</span>
-            <span>ERR_CODE: LOG_NOT_FOUND</span>
-          </div>
 
           <div
             style={{
@@ -53,31 +49,6 @@ export default function Custom404() {
             <Link href="/" className={styles.pillLink} style={{ background: "var(--bg-muted)", borderColor: "#38BDF8", color: "#38BDF8" }}>
               ← Back to home
             </Link>
-            <Link href="/#writing" className={styles.pillLink}>
-              Browse logs →
-            </Link>
-          </div>
-        </div>
-
-        <div
-          style={{
-            background: "var(--bg-surface)",
-            border: "1px dashed var(--border-default)",
-            borderRadius: "var(--radius-md)",
-            padding: "1.25rem",
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.8rem",
-            color: "var(--text-muted)",
-            lineHeight: 1.7,
-          }}
-        >
-          <div style={{ color: "var(--text-primary)", marginBottom: "0.5rem" }}>$ cat /logs/index</div>
-          <div>
-            Hint: Use search on the homepage or check{" "}
-            <Link href="/sitemap.xml" style={{ color: "var(--accent-cyan)", textDecoration: "underline" }}>
-              /sitemap.xml
-            </Link>{" "}
-            for all available logs.
           </div>
         </div>
       </article>
