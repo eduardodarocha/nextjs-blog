@@ -4,25 +4,53 @@ import styles from "./layout.module.css";
 
 const name = "Eduardo Rocha";
 export const siteTitle = "Eduardo Rocha — AI-Focused Software Developer";
+export const siteDescription =
+  "Eduardo Rocha — AI-focused software developer. Writing about web development, AI, LLMs, and software engineering.";
+export const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://eduardo-rocha-blog.vercel.app";
+export const defaultOgImage = `${siteUrl}/og-default.png`;
 
-export default function Layout({ children, home }) {
+export default function Layout({
+  children,
+  home,
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogType = "website",
+  noIndex = false,
+}) {
+  const pageTitle = title ? `${title} | Eduardo Rocha` : siteTitle;
+  const pageDescription = description || siteDescription;
+  const pageOgImage = ogImage || defaultOgImage;
+
   return (
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Eduardo Rocha — AI-focused software developer. Writing about web development, AI, and software engineering."
-        />
-        <meta
-          property="og:image"
-          content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle
-          )}.png?theme=dark&md=1&fontSize=75px`}
-        />
-        <meta name="og:title" content={siteTitle} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content={name} />
+        <meta name="description" content={pageDescription} />
+        {canonical && <link rel="canonical" href={canonical} />}
+        {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+        {/* Open Graph */}
+        <meta property="og:title" content={title || siteTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content={ogType} />
+        {canonical && <meta property="og:url" content={canonical} />}
+        <meta property="og:image" content={pageOgImage} />
+        <meta property="og:site_name" content={siteTitle} />
+        <meta property="og:locale" content="pt_BR" />
+
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <title>{siteTitle}</title>
+        <meta name="twitter:title" content={title || siteTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={pageOgImage} />
+        <meta name="twitter:creator" content="@eduardorocha" />
+
+        <title>{pageTitle}</title>
       </Head>
 
       <nav className={styles.nav}>

@@ -1,8 +1,9 @@
 import { useState } from "react";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import DateToken from "../components/date";
-import Layout, { siteTitle } from "../components/layout";
+import Layout, { siteTitle, siteDescription, siteUrl } from "../components/layout";
 import styles from "../styles/Home.module.css";
 import { getSortedPostsData } from "../lib/posts";
 
@@ -18,7 +19,9 @@ const techStack = [
 ];
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = getSortedPostsData().map(
+    ({ content, contentHtml, ...rest }) => rest
+  );
   return {
     props: {
       allPostsData,
@@ -50,8 +53,49 @@ export default function Home({ allPostsData }) {
     return matchesCategory && matchesSearch;
   });
 
+  const canonical = siteUrl;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    author: {
+      "@type": "Person",
+      name: "Eduardo Rocha",
+      url: siteUrl,
+    },
+  };
+
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: allPostsData.slice(0, 10).map((post, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      url: `${siteUrl}/posts/${post.id}`,
+      name: post.title,
+    })),
+  };
+
   return (
-    <Layout home>
+    <Layout
+      home
+      title={siteTitle}
+      description={siteDescription}
+      canonical={canonical}
+      ogType="website"
+    >
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+        />
+      </Head>
       {/* Original Personal Bio & Hero Section */}
       <section className={styles.hero}>
         <div className={styles.avatarWrapper}>
