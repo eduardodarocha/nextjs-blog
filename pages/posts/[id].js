@@ -29,7 +29,11 @@ export async function getStaticPaths() {
 export default function Post({ postData, allPostsData }) {
   const canonical = `${siteUrl}/posts/${postData.id}`;
   const description = postData.description || postData.excerpt;
-  const ogImage = postData.coverImage || `${siteUrl}/og-default.png`;
+  const ogImage = postData.coverImage
+    ? postData.coverImage.startsWith("http")
+      ? postData.coverImage
+      : `${siteUrl}${postData.coverImage.startsWith("/") ? "" : "/"}${postData.coverImage}`
+    : `${siteUrl}/og-default.png`;
 
   // Related posts: same category, newest first, max 3
   const relatedPosts = allPostsData
