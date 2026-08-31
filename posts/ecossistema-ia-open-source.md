@@ -1,6 +1,7 @@
 ---
 title: 'Desvendando o Coração Pulsante da Inovação em IA: O Ecossistema Open-Source'
 date: '2026-08-14'
+coverImage: '/images/og/ecossistema-ia-open-source.png'
 ---
 
 # Desvendando o Coração Pulsante da Inovação em IA: O Ecossistema Open-Source

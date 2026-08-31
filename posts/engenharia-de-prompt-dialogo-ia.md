@@ -1,6 +1,7 @@
 ---
 title: 'Engenharia de Prompt: Desvendando o Diálogo com a Inteligência Artificial'
 date: '2026-08-14'
+coverImage: '/images/og/engenharia-de-prompt-dialogo-ia.png'
 ---
 
 # Engenharia de Prompt: Desvendando o Diálogo com a Inteligência Artificial

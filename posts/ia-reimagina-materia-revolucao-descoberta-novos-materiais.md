@@ -1,6 +1,7 @@
 ---
 title: 'IA Reimagina a Matéria: A Revolução na Descoberta de Novos Materiais'
 date: '2026-08-19'
+coverImage: '/images/og/ia-reimagina-materia-revolucao-descoberta-novos-materiais.png'
 ---
 
 # IA Reimagina a Matéria: A Revolução na Descoberta de Novos Materiais

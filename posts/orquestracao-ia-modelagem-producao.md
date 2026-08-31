@@ -1,6 +1,7 @@
 ---
 title: 'A Orquestração da Inteligência Artificial: Da Modelagem à Produção e Além'
 date: '2026-08-21'
+coverImage: '/images/og/orquestracao-ia-modelagem-producao.png'
 ---
 
 # A Orquestração da Inteligência Artificial: Da Modelagem à Produção e Além

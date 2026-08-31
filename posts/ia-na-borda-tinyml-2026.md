@@ -1,6 +1,7 @@
 ---
 title: 'Descentralizando a Inteligência: O Crescimento Exponencial da IA na Borda (Edge AI) e TinyML em 2026'
 date: '2026-08-26'
+coverImage: '/images/og/ia-na-borda-tinyml-2026.png'
 ---
 
 # Descentralizando a Inteligência: O Crescimento Exponencial da IA na Borda (Edge AI) e TinyML em 2026

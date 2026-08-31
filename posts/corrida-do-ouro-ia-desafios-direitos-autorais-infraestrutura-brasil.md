@@ -1,6 +1,7 @@
 ---
 title: 'A Corrida do Ouro da IA: Inovação, Capital e os Desafios Crescentes de Direitos Autorais e Infraestrutura no Brasil'
 date: '2026-08-14'
+coverImage: '/images/og/corrida-do-ouro-ia-desafios-direitos-autorais-infraestrutura-brasil.png'
 ---
 
 # A Corrida do Ouro da IA: Inovação, Capital e os Desafios Crescentes de Direitos Autorais e Infraestrutura no Brasil

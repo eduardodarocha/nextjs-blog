@@ -1,6 +1,7 @@
 ---
 title: 'A Inteligência Artificial no Coração do Desenvolvimento de Software: Ferramentas e Transformações'
 date: '2026-08-28'
+coverImage: '/images/og/ia-no-desenvolvimento-de-software-ferramentas-transformacoes.png'
 ---
 
 # A Inteligência Artificial no Coração do Desenvolvimento de Software: Ferramentas e Transformações

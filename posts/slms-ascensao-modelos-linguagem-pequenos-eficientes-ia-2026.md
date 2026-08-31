@@ -1,6 +1,7 @@
 ---
 title: 'SLMs: A Ascensão dos Modelos de Linguagem Pequenos e Eficientes Redefine o Ecossistema de IA em 2026'
 date: '2026-08-31'
+coverImage: '/images/og/slms-ascensao-modelos-linguagem-pequenos-eficientes-ia-2026.png'
 ---
 
 # SLMs: A Ascensão dos Modelos de Linguagem Pequenos e Eficientes Redefine o Ecossistema de IA em 2026

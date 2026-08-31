@@ -1,6 +1,7 @@
 ---
 title: 'IA Multimodal: A Nova Era da Compreensão Inteligente em 2026'
 date: '2026-08-17'
+coverImage: '/images/og/ia-multimodal-nova-era-compreensao-inteligente-2026.png'
 ---
 
 # IA Multimodal: A Nova Era da Compreensão Inteligente em 2026

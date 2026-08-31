@@ -1,6 +1,7 @@
 ---
 title: 'A Ascensão dos Agentes Autônomos de IA: LLMs, RAG e o Futuro da Automação Inteligente'
 date: '2026-08-12'
+coverImage: '/images/og/agentes-autonomos-ia-llms-rag-automacao-inteligente.png'
 ---
 
 # A Ascensão dos Agentes Autônomos de IA: LLMs, RAG e o Futuro da Automação Inteligente
