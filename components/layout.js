@@ -6,8 +6,9 @@ const name = "Eduardo Rocha";
 export const siteTitle = "Eduardo Rocha — AI-Focused Software Developer";
 export const siteDescription =
   "Eduardo Rocha — AI-focused software developer. Writing about web development, AI, LLMs, and software engineering.";
-export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://eduardo-rocha-blog.vercel.app";
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL || "https://eduardo-rocha-blog.vercel.app"
+).replace(/\/$/, "");
 export const defaultOgImage = `${siteUrl}/og-default.png`;
 
 export default function Layout({
