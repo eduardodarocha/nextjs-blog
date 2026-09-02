@@ -6,7 +6,9 @@
     "start": "next start",
     "test:cron": "node scripts/test-cron.js",
     "test:trend-cron": "node scripts/test-trend-cron.js",
-    "test:direct": "node scripts/test-direct.js"
+    "test:direct": "node scripts/test-direct.js",
+    "test:validate": "node scripts/test-validate-structure.js",
+    "test:title": "node scripts/test-page-title.js"
   },
   "dependencies": {
     "@google/genai": "^2.16.0",

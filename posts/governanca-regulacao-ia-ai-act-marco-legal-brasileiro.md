@@ -1,5 +1,7 @@
 ---
 title: 'Governança e Regulação de IA: O AI Act Europeu, o PL 2338 e o que Muda para Quem Constrói Software'
+seoTitle: 'Regulação de IA: AI Act, PL 2338 e o Impacto no Código'
+description: 'O AI Act europeu e o PL 2338 no Brasil transformam a regulação de IA em requisito de arquitetura. O que realmente muda para quem constrói software.'
 date: '2026-08-10'
 ---
 

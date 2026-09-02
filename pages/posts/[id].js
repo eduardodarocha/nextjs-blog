@@ -90,6 +90,7 @@ export default function Post({ postData, allPostsData }) {
   return (
     <Layout
       title={postData.title}
+      seoTitle={postData.seoTitle}
       description={description}
       canonical={canonical}
       ogImage={ogImage}

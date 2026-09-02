@@ -1,5 +1,7 @@
 ---
 title: 'A Inteligência Artificial no Coração do Desenvolvimento de Software: Ferramentas e Transformações'
+seoTitle: 'IA no Desenvolvimento de Software: Ferramentas e Mudanças'
+description: 'Como a IA se integra a cada fase do ciclo de desenvolvimento de software: geração de código, testes, revisão e detecção de anomalias em produção.'
 date: '2026-08-28'
 coverImage: '/images/og/ia-no-desenvolvimento-de-software-ferramentas-transformacoes.png'
 ---

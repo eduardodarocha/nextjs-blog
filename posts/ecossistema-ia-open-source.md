@@ -1,5 +1,7 @@
 ---
 title: 'Desvendando o Coração Pulsante da Inovação em IA: O Ecossistema Open-Source'
+seoTitle: 'O Ecossistema Open-Source de Inteligência Artificial'
+description: 'Um mergulho no ecossistema open-source de IA: os modelos, as ferramentas, os conjuntos de dados e as comunidades que sustentam e democratizam a inovação.'
 date: '2026-08-14'
 coverImage: '/images/og/ecossistema-ia-open-source.png'
 ---
