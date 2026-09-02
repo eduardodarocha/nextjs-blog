@@ -1,7 +1,7 @@
 ---
 title: 'Descentralizando a Inteligência: O Crescimento Exponencial da IA na Borda (Edge AI) e TinyML em 2026'
 seoTitle: 'IA na Borda (Edge AI) e TinyML em 2026'
-description: 'Edge AI e TinyML levam a inteligência a bilhões de dispositivos em 2026: por que processar na borda deixa os sistemas mais rápidos, privados e eficientes.'
+description: 'Edge AI e TinyML levam a IA a bilhões de dispositivos em 2026: hardware dedicado, modelos ultracompactos e aprendizagem federada com foco em privacidade.'
 date: '2026-08-26'
 coverImage: '/images/og/ia-na-borda-tinyml-2026.png'
 ---

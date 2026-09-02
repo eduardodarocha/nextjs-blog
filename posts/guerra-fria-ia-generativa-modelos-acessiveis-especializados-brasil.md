@@ -1,7 +1,7 @@
 ---
 title: 'A Guerra Fria da IA Generativa: Modelos Mais Acessíveis, Especializados e o Brasil na Disputa por Soberania Tecnológica'
 seoTitle: 'A Guerra Fria da IA Generativa e a Disputa do Brasil'
-description: 'Modelos de IA mais acessíveis e especializados redefinem a competição — e o Brasil busca soberania tecnológica com supercomputador e nuvem nacional.'
+description: 'Modelos de IA mais acessíveis e especializados redefinem a competição por custo por token — e o Brasil aposta em supercomputador e nuvem soberana.'
 date: '2026-08-24'
 coverImage: '/images/og/guerra-fria-ia-generativa-modelos-acessiveis-especializados-brasil.png'
 ---

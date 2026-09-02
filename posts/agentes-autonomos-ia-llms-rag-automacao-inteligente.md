@@ -1,7 +1,7 @@
 ---
 title: 'A Ascensão dos Agentes Autônomos de IA: LLMs, RAG e o Futuro da Automação Inteligente'
 seoTitle: 'Agentes Autônomos de IA: LLMs, RAG e Automação'
-description: 'Como os agentes autônomos de IA combinam LLMs e RAG para perceber, planejar e agir em tarefas complexas — e o que isso muda na automação de software.'
+description: 'Como os agentes autônomos de IA usam LLMs como núcleo cognitivo e RAG como memória para perceber, planejar e agir — arquitetura, casos de uso e riscos.'
 date: '2026-08-12'
 coverImage: '/images/og/agentes-autonomos-ia-llms-rag-automacao-inteligente.png'
 ---

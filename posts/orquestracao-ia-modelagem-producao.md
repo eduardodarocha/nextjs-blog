@@ -1,7 +1,7 @@
 ---
 title: 'A Orquestração da Inteligência Artificial: Da Modelagem à Produção e Além'
 seoTitle: 'Orquestração de IA: Da Modelagem à Produção'
-description: 'O valor da IA não está só no modelo, mas na orquestração de todas as etapas que levam uma ideia à produção, operando em escala e com confiabilidade.'
+description: 'O valor da IA não está só no modelo: dados, treinamento, MLOps, implantação e governança são a orquestração que leva uma ideia à produção em escala.'
 date: '2026-08-21'
 coverImage: '/images/og/orquestracao-ia-modelagem-producao.png'
 ---

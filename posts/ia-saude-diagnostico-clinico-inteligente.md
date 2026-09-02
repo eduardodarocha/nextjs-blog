@@ -1,7 +1,7 @@
 ---
 title: 'IA na Saúde: Diagnóstico Clínico Inteligente e os Limites da Confiança Automatizada'
 seoTitle: 'IA na Saúde: Diagnóstico Clínico e Confiança'
-description: 'Onde a IA já entrega valor clínico em radiologia, patologia e triagem — e os limites de engenharia, regulação e confiança que a adoção responsável exige.'
+description: 'IA clínica em imagem médica, patologia digital e triagem — e os limites de viés, alucinação, regulação como dispositivo médico e confiança que ela exige.'
 date: '2026-08-09'
 ---
 

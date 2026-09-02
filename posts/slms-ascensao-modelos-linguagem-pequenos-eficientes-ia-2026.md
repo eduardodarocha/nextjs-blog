@@ -1,7 +1,7 @@
 ---
 title: 'SLMs: A Ascensão dos Modelos de Linguagem Pequenos e Eficientes Redefine o Ecossistema de IA em 2026'
 seoTitle: 'SLMs: A Ascensão dos Modelos de Linguagem Pequenos'
-description: 'Os Small Language Models entregam 80-90% da qualidade dos grandes a uma fração do custo — e a arquitetura híbrida com LLMs é a estratégia vencedora em 2026.'
+description: 'Os SLMs entregam 80-90% da qualidade dos grandes modelos a uma fração do custo. Modelos como Phi-4 e Gemma 3 e a arquitetura híbrida com LLMs em 2026.'
 date: '2026-08-31'
 coverImage: '/images/og/slms-ascensao-modelos-linguagem-pequenos-eficientes-ia-2026.png'
 ---

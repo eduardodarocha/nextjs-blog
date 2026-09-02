@@ -1,7 +1,7 @@
 ---
 title: 'A Corrida do Ouro da IA: Inovação, Capital e os Desafios Crescentes de Direitos Autorais e Infraestrutura no Brasil'
 seoTitle: 'A Corrida do Ouro da IA e os Desafios no Brasil'
-description: 'O boom de investimentos em IA e os dilemas que ele traz ao Brasil: os direitos autorais do conteúdo gerado por IA e o impacto dos data centers.'
+description: 'O fluxo recorde de capital para IA e os dilemas que ele impõe ao Brasil: os direitos autorais do conteúdo gerado por IA e o custo dos data centers.'
 date: '2026-08-14'
 coverImage: '/images/og/corrida-do-ouro-ia-desafios-direitos-autorais-infraestrutura-brasil.png'
 ---

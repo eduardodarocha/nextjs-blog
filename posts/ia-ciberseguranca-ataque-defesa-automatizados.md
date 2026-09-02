@@ -1,7 +1,7 @@
 ---
 title: 'IA e Cibersegurança: A Corrida Armamentista entre Ataque e Defesa Automatizados'
 seoTitle: 'IA e Cibersegurança: Ataque e Defesa Automatizados'
-description: 'Como a IA reconfigura os dois lados da cibersegurança: agentes autônomos que analisam, decidem e agem em segundos, tanto no ataque quanto na defesa.'
+description: 'IA em velocidade de máquina nos dois lados da cibersegurança: engenharia social em escala no ataque, detecção de anomalias e SOC assistido na defesa.'
 date: '2026-08-08'
 ---
 

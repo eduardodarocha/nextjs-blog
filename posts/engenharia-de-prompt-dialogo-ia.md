@@ -1,7 +1,7 @@
 ---
 title: 'Engenharia de Prompt: Desvendando o Diálogo com a Inteligência Artificial'
 seoTitle: 'Engenharia de Prompt: O Diálogo com a IA'
-description: 'O que é engenharia de prompt e por que virou disciplina essencial: técnicas para dialogar com LLMs e extrair respostas mais precisas, úteis e confiáveis.'
+description: 'Princípios e técnicas de engenharia de prompt — few-shot, chain-of-thought, personas e delimitadores — para obter respostas precisas e confiáveis de LLMs.'
 date: '2026-08-14'
 coverImage: '/images/og/engenharia-de-prompt-dialogo-ia.png'
 ---

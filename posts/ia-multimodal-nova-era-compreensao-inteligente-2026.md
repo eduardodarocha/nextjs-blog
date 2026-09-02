@@ -1,7 +1,7 @@
 ---
 title: 'IA Multimodal: A Nova Era da Compreensão Inteligente em 2026'
 seoTitle: 'IA Multimodal: A Nova Era da Compreensão em 2026'
-description: 'A multimodalidade nativa virou padrão em 2026: modelos que integram texto, imagem, áudio e vídeo para uma compreensão de mundo mais rica e contextual.'
+description: 'A multimodalidade nativa virou padrão em 2026: modelos que unem texto, imagem, áudio e vídeo, com impacto em saúde, finanças, software e atendimento.'
 date: '2026-08-17'
 coverImage: '/images/og/ia-multimodal-nova-era-compreensao-inteligente-2026.png'
 ---
