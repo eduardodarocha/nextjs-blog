@@ -21,7 +21,7 @@ export default function Layout({
   ogType = "website",
   noIndex = false,
 }) {
-  const pageTitle = title ? `${title} | Eduardo Rocha` : siteTitle;
+  const pageTitle = title ? `${title}` : siteTitle;
   const pageDescription = description || siteDescription;
   const pageOgImage = ogImage || defaultOgImage;
 
