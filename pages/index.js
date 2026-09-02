@@ -34,7 +34,7 @@ export default function Home({ allPostsData }) {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
 
   const categories = [
-    { id: "ALL", label: "[ ALL ]" },
+    { id: "ALL", label: "[ TODOS ]" },
     { id: "autonomous_agents", label: "[ AGENTS ]" },
     { id: "llm_ops", label: "[ LLM_OPS ]" },
     { id: "ai_engineering", label: "[ AI_ENG ]" },
@@ -110,11 +110,11 @@ export default function Home({ allPostsData }) {
           <span className={styles.statusIndicator} title="System Online" />
         </div>
 
-        <h1 className={styles.heroTitle}>AI-Focused Software Developer</h1>
+        <h1 className={styles.heroTitle}>Desenvolvedor de Software Focado em IA</h1>
 
         <p className={styles.heroBio}>
-          Hi, I&apos;m Eduardo — I build web applications and explore how AI
-          and large language models can make software more useful.
+          Olá, sou o Eduardo — construo aplicações web e exploro como a IA e
+          os grandes modelos de linguagem podem tornar o software mais útil.
         </p>
 
         <a
@@ -123,7 +123,7 @@ export default function Home({ allPostsData }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span>Connect on LinkedIn</span>
+          <span>Conectar no LinkedIn</span>
           <span style={{ fontSize: "0.75rem" }}>↗</span>
         </a>
       </section>
@@ -142,7 +142,7 @@ export default function Home({ allPostsData }) {
 
       {/* Writing Section with Interactive Search & Category Filter */}
       <section className={styles.section} id="writing">
-        <h2 className={styles.sectionTitle}>// WRITING & LOGS</h2>
+        <h2 className={styles.sectionTitle}>// ARTIGOS</h2>
 
         {/* Search Bar & Category Filter Controls */}
         <div className={styles.controlsContainer}>
@@ -152,7 +152,7 @@ export default function Home({ allPostsData }) {
             <input
               type="text"
               className={styles.searchInput}
-              placeholder="Search posts..."
+              placeholder="Buscar artigos..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -177,7 +177,7 @@ export default function Home({ allPostsData }) {
         {/* Posts Grid (Strict System Design Specification 5.2) */}
         {filteredPosts.length === 0 ? (
           <div className={styles.emptyState}>
-            // NO_POSTS_FOUND_MATCHING_FILTER
+            // NENHUM_ARTIGO_CORRESPONDE_AO_FILTRO
           </div>
         ) : (
           <div className={styles.postGrid}>
