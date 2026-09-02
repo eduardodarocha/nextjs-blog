@@ -1,5 +1,7 @@
 ---
 title: 'IA Reimagina a Matéria: A Revolução na Descoberta de Novos Materiais'
+seoTitle: 'IA e a Descoberta de Novos Materiais'
+description: 'A IA está reescrevendo a ciência dos materiais: em vez de tentativa e erro, modelos preveem compostos e aceleram a descoberta, da energia aos semicondutores.'
 date: '2026-08-19'
 coverImage: '/images/og/ia-reimagina-materia-revolucao-descoberta-novos-materiais.png'
 ---

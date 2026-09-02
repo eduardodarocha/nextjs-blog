@@ -1,5 +1,7 @@
 ---
 title: 'A Corrida do Silício da IA: Além das GPUs e em Direção à Eficiência e Inovação'
+seoTitle: 'A Corrida do Silício da IA: Além das GPUs'
+description: 'Como a IA está saindo das GPUs de uso geral rumo a chips especializados, computação neuromórfica e arquiteturas mais eficientes em energia até 2026.'
 date: '2026-09-02'
 ---
 

@@ -122,6 +122,8 @@ Conteúdo completo em Markdown...`;
       repo,
       defaultBranch,
       title: edited.title,
+      seoTitle: edited.seoTitle,
+      description: edited.description,
       cleanSlug,
       existingFiles,
       bodyContent: edited.content,
