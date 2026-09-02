@@ -1,4 +1,5 @@
 import { Montserrat, JetBrains_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "../styles/global.css";
 
 const montserrat = Montserrat({ subsets: ["latin"], display: "swap" });
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }) {
         }
       `}</style>
       <Component {...pageProps} />
+      <GoogleAnalytics gaId="G-PH31J3DLE1" />
     </>
   );
 }
