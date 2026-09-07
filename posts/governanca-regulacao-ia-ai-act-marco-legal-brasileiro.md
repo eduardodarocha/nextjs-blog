@@ -3,6 +3,7 @@ title: 'Governança e Regulação de IA: O AI Act Europeu, o PL 2338 e o que Mud
 seoTitle: 'Regulação de IA: AI Act, PL 2338 e o Impacto no Código'
 description: 'O AI Act europeu classifica a IA por risco e o PL 2338 avança no Brasil. O que muda na engenharia: inventário, documentação versionada e rastreabilidade.'
 date: '2026-08-10'
+coverImage: '/images/og/governanca-regulacao-ia-ai-act-marco-legal-brasileiro.png'
 ---
 
 # Governança e Regulação de IA: O AI Act Europeu, o PL 2338 e o que Muda para Quem Constrói Software
@@ -32,7 +33,7 @@ Sistemas usados em infraestrutura crítica, educação, emprego, acesso a servi�
 - Documentação técnica e registro automático de eventos (logs).
 - Transparência e instruções de uso para o operador.
 - Supervisão humana efetiva.
-- Robustez, acurácia e cibersegurança adequadas.
+- Robustez, acurácia e [cibersegurança](/posts/ia-ciberseguranca-ataque-defesa-automatizados) adequadas.
 
 ### Risco Limitado — Obrigações de Transparência
 
@@ -84,7 +85,7 @@ Sistemas de alto risco precisam registrar automaticamente eventos suficientes pa
 
 ### Avaliação Estratificada e Contínua
 
-Reportar acurácia média não basta. É preciso medir desempenho por subgrupo relevante e monitorar deriva em produção, com um processo definido de revalidação.
+Reportar acurácia média não basta. É preciso medir desempenho por subgrupo relevante e [monitorar deriva em produção](/posts/orquestracao-ia-modelagem-producao), com um processo definido de revalidação.
 
 ### Transparência ao Usuário
 

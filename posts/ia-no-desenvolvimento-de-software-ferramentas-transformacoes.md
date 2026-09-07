@@ -48,7 +48,7 @@ print(f"O número 2 está no índice: {binary_search(sorted_list, 2)}") # Saída
 Esse tipo de assistência acelera significativamente o tempo de codificação, reduzindo a fadiga e permitindo que desenvolvedores se concentrem na lógica de negócio mais complexa.
 
 ### Tradução de Linguagem Natural para Código
-Um dos avanços mais revolucionários é a capacidade da IA de traduzir descrições em linguagem natural diretamente para código funcional. Isso democratiza a programação e permite que até mesmo não-desenvolvedores, com o auxílio de prompts bem elaborados, possam gerar protótipos ou scripts simples.
+Um dos avanços mais revolucionários é a capacidade da IA de traduzir descrições em linguagem natural diretamente para código funcional. Isso democratiza a programação e permite que até mesmo não-desenvolvedores, com o auxílio de [prompts bem elaborados](/posts/engenharia-de-prompt-dialogo-ia), possam gerar protótipos ou scripts simples.
 
 ## IA na Qualidade do Código: Análise, Otimização e Segurança
 A IA vai além da mera geração de código, atuando como um "revisor" incansável e um "analista de segurança" proativo.
@@ -107,7 +107,7 @@ Modelos de IA podem prever picos de demanda com base em padrões históricos e d
 Apesar do imenso potencial, a integração da IA no desenvolvimento de software traz consigo uma série de desafios e questões éticas que precisam ser abordadas.
 
 *   **Viés e Iniquidade:** Os modelos de IA são treinados em vastos conjuntos de dados. Se esses dados contiverem vieses (sociais, técnicos ou históricos), a IA pode perpetuá-los ou até amplificá-los nas sugestões de código ou decisões automatizadas.
-*   **Segurança e Propriedade Intelectual:** Código gerado por IA pode, inadvertidamente, introduzir vulnerabilidades de segurança ou violar licenças de software ou direitos autorais de código-fonte de onde foi treinado. É crucial ter processos de revisão humana.
+*   **Segurança e Propriedade Intelectual:** Código gerado por IA pode, inadvertidamente, introduzir [vulnerabilidades de segurança](/posts/ia-ciberseguranca-ataque-defesa-automatizados) ou violar licenças de software ou direitos autorais de código-fonte de onde foi treinado. É crucial ter processos de revisão humana.
 *   **Dependência Excessiva:** Existe o risco de que os desenvolvedores se tornem excessivamente dependentes da IA, diminuindo suas habilidades de depuração, pensamento crítico e resolução de problemas.
 *   **Transparência e Explicabilidade (XAI):** Entender por que a IA sugeriu uma determinada solução pode ser um desafio ("caixa preta"). Isso afeta a confiança e a capacidade de depurar problemas complexos, especialmente em sistemas críticos.
 

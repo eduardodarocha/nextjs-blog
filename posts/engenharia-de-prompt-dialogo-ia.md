@@ -156,7 +156,7 @@ Mesmo com a melhor Engenharia de Prompt, há desafios:
 
 *   **Alucinações:** Modelos podem gerar informações factualmente incorretas com grande confiança. Sempre verifique fatos críticos.
 *   **Viés:** Os modelos refletem os vieses presentes nos dados de treinamento. Prompts devem ser projetados para mitigar isso e exigir neutralidade.
-*   **Prompt Injection:** Usuários maliciosos podem tentar manipular o modelo para contornar suas diretrizes de segurança ou executar ações indesejadas. A segurança dos prompts é um campo de pesquisa ativo.
+*   **Prompt Injection:** Usuários maliciosos podem tentar manipular o modelo para contornar suas diretrizes de segurança ou executar ações indesejadas. A [segurança de aplicações que embutem LLMs](/posts/ia-ciberseguranca-ataque-defesa-automatizados) é um campo de pesquisa ativo, e a injeção de prompt lidera as listas de risco.
 *   **Dependência Excessiva:** A habilidade humana de pensar criticamente e resolver problemas não deve ser substituída, mas aumentada pela IA.
 
 A Engenharia de Prompt não é apenas técnica, mas também exige um senso ético para garantir que os modelos sejam usados de forma responsável e benéfica.
@@ -167,8 +167,8 @@ A Engenharia de Prompt não existe no vácuo; ela é um componente central que s
 
 *   **APIs e SDKs:** Plataformas como OpenAI, Google AI Studio e Anthropic fornecem APIs onde os prompts são a principal forma de interação com seus modelos de base.
 *   **RAG (Retrieval-Augmented Generation):** Em sistemas RAG, prompts são usados tanto para formular a consulta de recuperação quanto para instruir o LLM sobre como sintetizar a resposta com base nos documentos recuperados.
-*   **Agentes Autônomos de IA:** A lógica por trás de agentes que executam tarefas complexas (planejamento, execução, auto-correção) é muitas vezes impulsionada por uma série de prompts encadeados, guiando o LLM em cada etapa.
-*   **Frameworks de Orquestração:** Ferramentas como LangChain e LlamaIndex fornecem abstrações e componentes para gerenciar, encadear e otimizar prompts, facilitando a construção de aplicações complexas.
+*   **Agentes Autônomos de IA:** A lógica por trás de [agentes que executam tarefas complexas](/posts/agentes-autonomos-ia-llms-rag-automacao-inteligente) (planejamento, execução, auto-correção) é muitas vezes impulsionada por uma série de prompts encadeados, guiando o LLM em cada etapa.
+*   **Frameworks de Orquestração:** Ferramentas como LangChain e LlamaIndex fornecem abstrações e componentes para gerenciar, encadear e otimizar prompts, facilitando a construção de [aplicações de IA prontas para produção](/posts/orquestracao-ia-modelagem-producao).
 
 Em essência, a Engenharia de Prompt é a interface humana para o vasto poder computacional dos LLMs, permitindo que eles sejam incorporados e utilizados de forma inteligente em praticamente qualquer aplicação ou fluxo de trabalho no ecossistema de IA.
 

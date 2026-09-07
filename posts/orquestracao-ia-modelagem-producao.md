@@ -142,8 +142,8 @@ Após o treinamento e validação, o modelo precisa ser acessível para as aplic
 
 Nenhum sistema de IA é completo sem considerar segurança, privacidade e ética. Esses aspectos são intrínsecos à orquestração.
 
-*   **Segurança de Dados e Modelos:** Proteção contra acesso não autorizado aos dados de treinamento e aos modelos implantados. Criptografia, autenticação e autorização são fundamentais.
-*   **Privacidade e Conformidade:** Atendimento a regulamentações como LGPD (Lei Geral de Proteção de Dados), GDPR e outras normas de privacidade. Isso inclui anonimização de dados, controle de consentimento e gestão de direitos do titular dos dados.
+*   **Segurança de Dados e Modelos:** Proteção contra [acesso não autorizado](/posts/ia-ciberseguranca-ataque-defesa-automatizados) aos dados de treinamento e aos modelos implantados. Criptografia, autenticação e autorização são fundamentais.
+*   **Privacidade e Conformidade:** Atendimento a [regulamentações de IA](/posts/governanca-regulacao-ia-ai-act-marco-legal-brasileiro) como LGPD (Lei Geral de Proteção de Dados), GDPR e outras normas de privacidade. Isso inclui anonimização de dados, controle de consentimento e gestão de direitos do titular dos dados.
 *   **Explicabilidade (XAI):** Garantir que os modelos de IA não sejam "caixas pretas", mas que suas decisões possam ser compreendidas e justificadas. Técnicas de XAI são cruciais para auditoria e confiança.
 *   **Mitigação de Vieses e Ética:** Identificar e corrigir vieses nos dados ou nos modelos que possam levar a decisões injustas ou discriminatórias. A orquestração envolve a incorporação de revisões éticas e testes de justiça ao longo de todo o pipeline.
 

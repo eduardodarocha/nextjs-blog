@@ -3,11 +3,12 @@ title: 'IA e Cibersegurança: A Corrida Armamentista entre Ataque e Defesa Autom
 seoTitle: 'IA e Cibersegurança: Ataque e Defesa Automatizados'
 description: 'IA em velocidade de máquina nos dois lados da cibersegurança: engenharia social em escala no ataque, detecção de anomalias e SOC assistido na defesa.'
 date: '2026-08-08'
+coverImage: '/images/og/ia-ciberseguranca-ataque-defesa-automatizados.png'
 ---
 
 # IA e Cibersegurança: A Corrida Armamentista entre Ataque e Defesa Automatizados
 
-A cibersegurança sempre foi um jogo de gato e rato, mas a Inteligência Artificial transformou esse jogo em uma disputa travada em velocidade de máquina. Em 2026, tanto os atacantes quanto os defensores operam com agentes autônomos que analisam, decidem e agem em segundos. Compreender como a IA reconfigura os dois lados desse conflito deixou de ser um exercício teórico para se tornar uma necessidade operacional de qualquer equipe que escreve ou opera software.
+A cibersegurança sempre foi um jogo de gato e rato, mas a Inteligência Artificial transformou esse jogo em uma disputa travada em velocidade de máquina. Em 2026, tanto os atacantes quanto os defensores operam com [agentes autônomos](/posts/agentes-autonomos-ia-llms-rag-automacao-inteligente) que analisam, decidem e agem em segundos. Compreender como a IA reconfigura os dois lados desse conflito deixou de ser um exercício teórico para se tornar uma necessidade operacional de qualquer equipe que escreve ou opera software.
 
 ## O Novo Campo de Batalha: Velocidade de Máquina
 
@@ -47,7 +48,7 @@ Em vez de tratar todas as vulnerabilidades como igualmente urgentes, sistemas de
 
 ## O Problema de Segurança da Própria IA
 
-Ao incorporar modelos de linguagem em produtos, as equipes de desenvolvimento adicionam uma superfície de ataque nova e ainda pouco compreendida. O projeto OWASP Top 10 para Aplicações de LLM catalogou os riscos mais críticos, e a injeção de prompt lidera a lista: instruções maliciosas escondidas em um documento, e-mail ou página web que o modelo processa como se fossem comandos legítimos.
+Ao incorporar modelos de linguagem em produtos, as equipes de desenvolvimento adicionam uma superfície de ataque nova e ainda pouco compreendida. O projeto OWASP Top 10 para Aplicações de LLM catalogou os riscos mais críticos, e a [injeção de prompt](/posts/engenharia-de-prompt-dialogo-ia) lidera a lista: instruções maliciosas escondidas em um documento, e-mail ou página web que o modelo processa como se fossem comandos legítimos.
 
 ```python
 # Exemplo conceitual de defesa em profundidade para uma aplicação com LLM.
@@ -79,7 +80,7 @@ Além da injeção de prompt, merecem atenção o envenenamento de dados de trei
 
 ## O Fator Humano e a Governança
 
-Nenhuma dessas ferramentas substitui um programa de segurança maduro. O NIST AI Risk Management Framework propõe um ciclo de governar, mapear, medir e gerenciar riscos de IA ao longo de todo o ciclo de vida do sistema. Na prática, isso significa inventariar onde a IA é usada, definir quem responde por cada decisão automatizada, medir taxas de falso positivo e falso negativo, e manter um humano no circuito para ações irreversíveis.
+Nenhuma dessas ferramentas substitui um programa de segurança maduro. O NIST AI Risk Management Framework propõe um ciclo de governar, mapear, medir e gerenciar riscos de IA ao longo de todo o ciclo de vida do sistema. Na prática, isso significa inventariar onde a IA é usada, [definir quem responde por cada decisão automatizada](/posts/governanca-regulacao-ia-ai-act-marco-legal-brasileiro), medir taxas de falso positivo e falso negativo, e manter um humano no circuito para ações irreversíveis.
 
 A automação amplia tanto o acerto quanto o erro. Um agente defensivo mal calibrado pode isolar um serviço de produção legítimo; um agente ofensivo contratado por um adversário não tem esse escrúpulo. A vantagem sustentável está com quem trata a IA como um componente auditável do sistema, e não como uma caixa-preta infalível.
 

@@ -167,7 +167,7 @@ Um agente autônomo moderno é mais do que apenas um LLM ou RAG. É uma orquestr
 
 ## Engenharia de Prompt para Agentes Autônomos: Orquestrando o Comportamento
 
-A engenharia de prompt para agentes vai muito além de apenas fazer perguntas ao LLM. Envolve a criação de instruções complexas que guiam o LLM para agir como um agente, definindo seus objetivos, suas ferramentas e seu processo de raciocínio.
+A [engenharia de prompt](/posts/engenharia-de-prompt-dialogo-ia) para agentes vai muito além de apenas fazer perguntas ao LLM. Envolve a criação de instruções complexas que guiam o LLM para agir como um agente, definindo seus objetivos, suas ferramentas e seu processo de raciocínio.
 
 **Técnicas Essenciais:**
 
@@ -226,10 +226,10 @@ Apesar do imenso potencial, o caminho para agentes autônomos robustos e éticos
 
 *   **Confiabilidade e Controle:** Garantir que os agentes operem sempre dentro dos parâmetros desejados e que possam ser supervisionados e interrompidos quando necessário. A complexidade do raciocínio pode tornar a depuração e o entendimento de suas decisões difíceis.
 *   **"Alucinações" Persistentes:** Embora o RAG ajude a mitigar, os LLMs ainda podem gerar informações incorretas ou enviesadas. Em agentes autônomos, isso pode levar a ações indesejadas ou perigosas.
-*   **Segurança:** Agentes com acesso a sistemas externos (APIs, bancos de dados) representam um novo vetor de ataque. É crucial garantir que suas interações sejam seguras e que não possam ser explorados.
+*   **Segurança:** Agentes com acesso a sistemas externos (APIs, bancos de dados) representam um [novo vetor de ataque](/posts/ia-ciberseguranca-ataque-defesa-automatizados). É crucial garantir que suas interações sejam seguras e que não possam ser explorados.
 *   **Viés e Discriminação:** Se os dados de treinamento do LLM ou da base de conhecimento do RAG contiverem vieses, o agente pode perpetuá-los ou amplificá-los em suas decisões e ações.
 *   **Impacto no Emprego:** A automação avançada de tarefas cognitivas levantará questões sobre o futuro do trabalho e a necessidade de requalificação profissional.
-*   **Transparência e Explicabilidade (XAI):** Entender por que um agente tomou uma decisão específica ainda é um desafio, o que é crítico em setores regulamentados como saúde e finanças.
+*   **Transparência e Explicabilidade (XAI):** Entender por que um agente tomou uma decisão específica ainda é um desafio, o que é crítico em [setores regulamentados](/posts/governanca-regulacao-ia-ai-act-marco-legal-brasileiro) como saúde e finanças.
 *   **Custo e Complexidade de Desenvolvimento:** Construir e manter agentes autônomos robustos requer expertise em IA, engenharia de software e infraestrutura de dados.
 
 ## Conclusão: Uma Nova Era de Automação Inteligente

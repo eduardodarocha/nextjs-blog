@@ -3,6 +3,7 @@ title: 'IA na Saúde: Diagnóstico Clínico Inteligente e os Limites da Confian�
 seoTitle: 'IA na Saúde: Diagnóstico Clínico e Confiança'
 description: 'IA clínica em imagem médica, patologia digital e triagem — e os limites de viés, alucinação, regulação como dispositivo médico e confiança que ela exige.'
 date: '2026-08-09'
+coverImage: '/images/og/ia-saude-diagnostico-clinico-inteligente.png'
 ---
 
 # IA na Saúde: Diagnóstico Clínico Inteligente e os Limites da Confiança Automatizada
