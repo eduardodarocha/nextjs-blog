@@ -43,13 +43,21 @@ export default async function handler(req, res) {
     const existingFiles = await listExistingPostFiles({ octokit, owner, repo, ref: defaultBranch });
     const existingTitles = existingFiles.map((f) => f.replace(/\.md$/, ''));
 
+    // The model has no clock: without explicit dates it treats anything it
+    // remembers as "recent" (e.g. year-old model launches), so the window is
+    // spelled out in the prompt.
+    const today = new Date();
+    const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const toISODate = (d) => d.toISOString().slice(0, 10);
+
     const prompt = `Você é um jornalista especializado em Inteligência Artificial, cobrindo o ecossistema de IA (novos modelos, lançamentos, financiamentos, ferramentas e pesquisas) para um blog técnico em Português do Brasil.
 
-Use a busca do Google para descobrir o que está acontecendo de mais relevante e recente no ecossistema de IA agora, e escreva um artigo envolvente sobre isso.
+Hoje é ${toISODate(today)}. Use a busca do Google para descobrir o que aconteceu de mais relevante no ecossistema de IA ENTRE ${toISODate(weekAgo)} E ${toISODate(today)} (últimos 7 dias), e escreva um artigo envolvente sobre isso.
 
 REGRAS:
 1. O artigo DEVE ser em Português do Brasil.
 2. O tema deve ser uma tendência ou notícia REAL e ATUAL do ecossistema de IA (lançamentos de modelos, movimentos de mercado, novas ferramentas, pesquisas relevantes) — não um tópico genérico atemporal.
+2.1. RECÊNCIA OBRIGATÓRIA: o evento central do artigo deve ter sido publicado/anunciado nos últimos 7 dias (a partir de ${toISODate(weekAgo)}). Verifique a data de publicação de cada fonte nos resultados de busca. Descarte lançamentos, modelos ou notícias mais antigos que isso, mesmo que sejam conhecidos ou importantes — não escreva sobre modelos ou eventos de meses ou anos atrás. Cite a data do evento no artigo.
 3. Não repita estes tópicos existentes no blog: ${existingFiles.join(', ')}.
 4. O conteúdo deve ser rico em detalhes, com títulos (##, ###), exemplos práticos, blocos de código se aplicável, e uma conclusão instigante — mesmo estilo didático e aprofundado do restante do blog.
 5. Baseie as afirmações nos resultados de busca; não invente números, datas ou citações.
