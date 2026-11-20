@@ -1,13 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "crons": [
-    {
+  "schedules": {
+    "generate-trend-post": {
+      "schedule": "0 11 * * 1,3",
       "path": "/api/cron/generate-trend-post",
-      "schedule": "0 11 * * 1,3"
+      "requestMethod": "GET"
     },
-    {
+    "generate-post": {
+      "schedule": "0 11 * * 5",
       "path": "/api/cron/generate-post",
-      "schedule": "0 11 * * 5"
+      "requestMethod": "GET"
     }
-  ]
+  }
 }
