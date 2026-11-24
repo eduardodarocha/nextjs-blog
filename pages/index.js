@@ -18,6 +18,8 @@ const techStack = [
   "Prompt Engineering",
 ];
 
+const POSTS_PER_PAGE = 10;
+
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData().map(
     ({ content, contentHtml, ...rest }) => rest
@@ -32,6 +34,7 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("ALL");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const categories = [
     { id: "ALL", label: "[ TODOS ]" },
@@ -52,6 +55,18 @@ export default function Home({ allPostsData }) {
       post.id?.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
+  const page = Math.min(currentPage, totalPages);
+  const paginatedPosts = filteredPosts.slice(
+    (page - 1) * POSTS_PER_PAGE,
+    page * POSTS_PER_PAGE
+  );
+
+  const goToPage = (n) => {
+    setCurrentPage(n);
+    document.getElementById("writing")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const canonical = siteUrl;
   const jsonLd = {
@@ -154,7 +169,10 @@ export default function Home({ allPostsData }) {
               className={styles.searchInput}
               placeholder="Buscar artigos..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setCurrentPage(1);
+              }}
             />
           </div>
 
@@ -166,7 +184,10 @@ export default function Home({ allPostsData }) {
                 className={`${styles.filterTab} ${
                   selectedCategory === cat.id ? styles.filterTabActive : ""
                 }`}
-                onClick={() => setSelectedCategory(cat.id)}
+                onClick={() => {
+                  setSelectedCategory(cat.id);
+                  setCurrentPage(1);
+                }}
               >
                 {cat.label}
               </button>
@@ -181,7 +202,7 @@ export default function Home({ allPostsData }) {
           </div>
         ) : (
           <div className={styles.postGrid}>
-            {filteredPosts.map((post, idx) => (
+            {paginatedPosts.map((post) => (
               <Link
                 href={`/posts/${post.id}`}
                 className={styles.postCard}
@@ -213,6 +234,37 @@ export default function Home({ allPostsData }) {
               </Link>
             ))}
           </div>
+        )}
+
+        {totalPages > 1 && (
+          <nav className={styles.pagination} aria-label="Paginação de artigos">
+            <button
+              className={styles.pageButton}
+              onClick={() => goToPage(page - 1)}
+              disabled={page === 1}
+            >
+              &lt; ANTERIOR
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+              <button
+                key={n}
+                className={`${styles.pageButton} ${
+                  n === page ? styles.pageButtonActive : ""
+                }`}
+                onClick={() => goToPage(n)}
+                aria-current={n === page ? "page" : undefined}
+              >
+                {String(n).padStart(2, "0")}
+              </button>
+            ))}
+            <button
+              className={styles.pageButton}
+              onClick={() => goToPage(page + 1)}
+              disabled={page === totalPages}
+            >
+              PRÓXIMO &gt;
+            </button>
+          </nav>
         )}
       </section>
     </Layout>
