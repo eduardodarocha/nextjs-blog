@@ -23,5 +23,9 @@
     "remark": "^14.0.2",
     "remark-html": "^15.0.2",
     "sharp": "^0.35.4"
+  },
+  "allowScripts": {
+    "@google/genai@2.16.0": true,
+    "protobufjs@7.6.5": true
   }
 }
